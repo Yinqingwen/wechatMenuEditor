@@ -1,30 +1,34 @@
 let URL_GET = '/menu';
 let URL_SUBMIT = '/menu';
-axios.defaults.baseURI = 'https://online.sdu.edu.cn/isdu-new';
-let net_menu_data = {
-    "button": [
-        {"type": "click", "name": "今日歌曲", "key": "V1001_TODAY_MUSIC"},
+let net_menu_data = null;
+
+let net = axios.create({
+    baseURL: 'https://www.example.com',
+});
+/*{
+"button": [
+    {"type": "click", "name": "今日歌曲", "key": "V1001_TODAY_MUSIC"},
+    {
+        "name": "菜单", "sub_button": [{"type": "view", "name": "搜索", "url": "http://www.soso.com/"},
         {
-            "name": "菜单", "sub_button": [{"type": "view", "name": "搜索", "url": "http://www.soso.com/"},
-            {
-                "type": "miniprogram",
-                "name": "wxa",
-                "url": "http://mp.weixin.qq.com",
-                "appid": "wx286b93c14bbf93aa",
-                "pagepath": "pages/lunar/index"
-            },
-            {"type": "click", "name": "赞一下我们", "key": "V1001_GOOD"}]
-        }]
-};
-/*axios.get(URL_GET)
+            "type": "miniprogram",
+            "name": "wxa",
+            "url": "http://mp.weixin.qq.com",
+            "appid": "wx286b93c14bbf93aa",
+            "pagepath": "pages/lunar/index"
+        },
+        {"type": "click", "name": "赞一下我们", "key": "V1001_GOOD"}]
+    }]
+};*/
+net.get(URL_GET)
     .then(function (res) {
-        if (res.status === 200){
+        if (res.status === 200) {
             net_menu_data = res.data.menu;
         }
     })
     .catch(function (err) {
-        console.log(err);
-    });*/
+        alert(err);
+    });
 const app = new Vue({
     el: '#app',
     data: {
