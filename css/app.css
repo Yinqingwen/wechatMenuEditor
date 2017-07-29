@@ -15,6 +15,7 @@
 }
 .line{
     position: absolute;
+    display: block;
     top: 0;
     left: 0;
     right: 0;
@@ -40,7 +41,7 @@ a{
     float: left;
     text-align: center;
     line-height: 50px;
-    border: 1px solid lightgrey;
+    /*border: 1px solid lightgrey;*/
 }
 .sizeof1{
     width: 100%;
@@ -56,9 +57,70 @@ a{
     width: auto;
     overflow: hidden;
 }
+.sub-menu{
+    border-left: 1px solid lightgrey;
+    border-right: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+}
 .sub-menu li{
     border-top: 1px solid lightgrey;
 }
 .chosen{
     color: red;
+}
+.form-control{
+    display: block;
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background: #fff none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+}
+.radio{
+    display: inline-flex;
+}
+.group{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: block;
+}
+label{
+    margin-top: 10px;
+    display: block;
+}
+.bottom{
+    display: inline-block;
+    bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
 }

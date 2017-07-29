@@ -7,32 +7,89 @@
 </head>
 <body>
 <div id="app" style="margin: 10px 20px">
-    <div class="frame">
+    <div class="frame" v-if="menu_data">
         <ul class="line">
             <li v-for="(btn,id) in menu_data.button" class="pre-menu-item" :class="size">
                 <a href="javascript:void(0);" @click="chooseBtn(event, id)" draggable="false">
                     <span class="inner_item">{{ btn.name }}</span>
                 </a>
-                <ul class="sub-menu">
+                <ul class="sub-menu" v-if="btn.sub_button">
                     <li v-for="(subBtn,sid) in btn.sub_button">
                         <a href="javascript:void(0);" @click="chooseSubBtn(event, id, sid)" draggable="false">
                             <span class="inner_item">{{ subBtn.name }}</span>
                         </a>
                     </li>
                 </ul>
+                <button v-if="!btn.sub_button || btn.sub_button.length < 5" class="btn btn-default"
+                        @click="addSubButton(id)">添加菜单
+                </button>
             </li>
             <li v-if="showAddBtn" class="pre-menu-item add-btn">
-                <a href="javascript:void(0);" draggable="false">+添加菜单</a>
+                <a href="javascript:void(0);" @click="addBtn" draggable="false">+添加菜单</a>
             </li>
         </ul>
+        <div style="position: absolute; bottom: 0;">
+            <button class="btn btn-default bottom" @click="showData">显示JSON</button>
+            <button class="btn btn-default bottom" @click="submit">上传</button>
+        </div>
     </div>
     <div class="editor">
         <div v-if="selectedMenu">
-            <strong>菜单名</strong>
-            <label>
-                <input v-model="selectedMenu.name">
-            </label>
+            <div class="form-control">
+                <label for="menu-name">
+                    <strong>菜单名</strong>
+                </label>
+                <input id="menu-name" v-model="selectedMenu.name">
+                <br>
+                <button @click="deleteButton" class="btn btn-default">删除菜单!!</button>
+            </div>
+            <div v-if="!selectedMenu.sub_button">
+                <div class="form-control">
+                    <div class="group">
+                        <strong>菜单类型</strong>
+                        <label for="click">
+                            <input class="radio" id="click" type="radio" v-model="selectedMenu.type" value="click">
+                            菜单点击事件
+                        </label>
+                        <label for="view">
+                            <input class="radio" id="view" type="radio" v-model="selectedMenu.type" value="view">
+                            跳转网页
+                        </label>
+                        <label for="mini">
+                            <input class="radio" id="mini" type="radio" v-model="selectedMenu.type" value="miniprogram">
+                            跳转到小程序
+                        </label>
+                    </div>
+                    <strong>详细设置</strong>
+                    <label for="url" v-if="selectedMenu.type === 'view'">
+                        跳转链接
+                        <input id="url" v-model="selectedMenu.url">
+                    </label>
+                    <label for="key" v-if="selectedMenu.type === 'click'">
+                        返回key值
+                        <input id="key" v-model="selectedMenu.key">
+                    </label>
+                    <div v-if="selectedMenu.type === 'miniprogram'" class="group">
+                        <label for="app-id">
+                            小程序AppID
+                            <input id="app-id" v-model="selectedMenu.appid">
+                        </label><br>
+                        <label for="page-path">
+                            小程序的页面路径
+                            <input id="page-path" v-model="selectedMenu.pagepath">
+                        </label>
+                        <br>
+                        <label>
+                            旧版微信无法打开小程序时跳转到此链接
+                            <input v-model="selectedMenu.url">
+                        </label>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+    <div style="display: block; float: left">
+        <div>{{ jsonData }}</div>
     </div>
 </div>
 <script src="js/axios.min.js"></script>
