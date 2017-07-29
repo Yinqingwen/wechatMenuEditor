@@ -1,0 +1,64 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.frame{
+    height: 500px;
+    position: relative;
+    float: left;
+    width: 350px;
+    border: 1px solid lightgrey;
+}
+.editor{
+    float: left;
+    padding-left: 10px;
+}
+.line{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+ul{
+    list-style-type: none;
+}
+li{
+    display: list-item;
+}
+a{
+    word-wrap: normal;
+    white-space: nowrap;
+    text-decoration: none;
+    color: green;
+}
+.inner_item{
+    display: block;
+    width: auto;
+}
+.pre-menu-item{
+    position: relative;
+    float: left;
+    text-align: center;
+    line-height: 50px;
+    border: 1px solid lightgrey;
+}
+.sizeof1{
+    width: 100%;
+}
+.sizeof2{
+    width: 50%;
+}
+.sizeof3{
+    width: 33.33%;
+}
+.add-btn{
+    float: none;
+    width: auto;
+    overflow: hidden;
+}
+.sub-menu li{
+    border-top: 1px solid lightgrey;
+}
+.chosen{
+    color: red;
+}

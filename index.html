@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <title>WeChat Menu Editor</title>
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div id="app" style="margin: 10px 20px">
+    <div class="frame">
+        <ul class="line">
+            <li v-for="(btn,id) in menu_data.button" class="pre-menu-item" :class="size">
+                <a href="javascript:void(0);" @click="chooseBtn(event, id)" draggable="false">
+                    <span class="inner_item">{{ btn.name }}</span>
+                </a>
+                <ul class="sub-menu">
+                    <li v-for="(subBtn,sid) in btn.sub_button">
+                        <a href="javascript:void(0);" @click="chooseSubBtn(event, id, sid)" draggable="false">
+                            <span class="inner_item">{{ subBtn.name }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li v-if="showAddBtn" class="pre-menu-item add-btn">
+                <a href="javascript:void(0);" draggable="false">+添加菜单</a>
+            </li>
+        </ul>
+    </div>
+    <div class="editor">
+        <div v-if="selectedMenu">
+            <strong>菜单名</strong>
+            <label>
+                <input v-model="selectedMenu.name">
+            </label>
+        </div>
+    </div>
+</div>
+<script src="js/axios.min.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
