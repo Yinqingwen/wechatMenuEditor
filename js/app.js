@@ -83,11 +83,7 @@ const app = new Vue({
         submit: function () {
             this.showData();
             if (confirm('确认提交?')) {
-                axios({
-                    method: 'POST',
-                    url: URL_SUBMIT,
-                    data: this.jsonData
-                })
+                net.post(URL_SUBMIT, this.jsonData)
                     .then(function (res) {
                         if (res.status === 200) {
                             alert('ok');
